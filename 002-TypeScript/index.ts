@@ -17,8 +17,8 @@ abstract class BooksRepository {
   abstract deleteBook(id: number): void;
 }
 
-class Stor extends BooksRepository {
-  books: Book[] = [];
+class InMemoryBooksRepository extends BooksRepository {
+  private books: Book[] = [];
 
   createBook(book: Book): void {
     this.books.push(book);
@@ -29,7 +29,7 @@ class Stor extends BooksRepository {
   };
   
   getBooks(): Book[] {
-    return this.books;
+    return [...this.books];
   };
 
    updateBook(id: number, updatedBook: Book): void {
