@@ -1,0 +1,93 @@
+<%- include('../port/layout-start', {title: title}) %>
+<%- include('../port/menu') %>
+
+<h1><%= title %></h1>
+
+<form
+  action="/book/update/<%= book.id %>"
+  method="POST"
+  enctype="multipart/form-data"
+>
+  <div class="mb-3">
+    <label for="title" class="form-label">Название</label>
+    <input
+      type="text"
+      class="form-control"
+      id="title"
+      name="title"
+      value="<%= book.title %>"
+      required
+    >
+  </div>
+
+  <div class="mb-3">
+    <label for="description" class="form-label">Описание</label>
+    <textarea
+      class="form-control"
+      id="description"
+      name="description"
+    ><%= book.description %></textarea>
+  </div>
+
+  <div class="mb-3">
+    <label for="authors" class="form-label">Авторы</label>
+    <textarea
+      class="form-control"
+      id="authors"
+      name="authors"
+    ><%= book.authors %></textarea>
+  </div>
+
+  <div class="form-check mb-3">
+    <input
+      type="checkbox"
+      id="favorite"
+      name="favorite"
+      value="true"
+      <%= book.favorite === true || book.favorite === 'true' ? 'checked' : '' %>
+    >
+
+    <label for="favorite" class="form-check-label">
+      Избранная
+    </label>
+  </div>
+
+  <div class="mb-3">
+    <label for="fileCover" class="form-label">Обложка</label>
+    <input
+      type="text"
+      class="form-control"
+      id="fileCover"
+      name="fileCover"
+      value="<%= book.fileCover %>"
+    >
+  </div>
+
+  <div class="mb-3">
+    <label for="fileBook" class="form-label">
+      Новый файл книги
+    </label>
+
+    <input
+      type="file"
+      class="form-control"
+      id="fileBook"
+      name="fileBook"
+    >
+
+    <% if (book.fileName) { %>
+      <small class="form-text text-muted">
+        Текущий файл: <%= book.fileName %>
+      </small>
+    <% } %>
+  </div>
+
+  <button type="submit" class="btn btn-primary">
+    Сохранить
+  </button>
+</form>
+
+
+
+<%- include('../port/layout-end') %>
+
