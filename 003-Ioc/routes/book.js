@@ -3,7 +3,7 @@ const { Container } = require('inversify');
 const router = express.Router();
 const fileMulter = require('../middleware/file');
 
-const { Book } = require('../repositories/BooksRepository');
+const { BooksRepository, Book } = require('../repositories/BooksRepository');
 
 router.get('/', async (req, res, next) => {
   const container = req.app.get('container');
